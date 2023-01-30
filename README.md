@@ -2,6 +2,14 @@
 
 Mobile app which displays Star Wars movie list.
 
+## Installation
+
+First clone the repo, then install dependencies by:
+
+  ```sh
+  npm i
+  ```
+
 App was built using react-native and Expo. To run the app use:
 
   ```sh
