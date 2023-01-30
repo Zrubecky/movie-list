@@ -11,6 +11,24 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff',
         flex: 1,
     },
+    title: {
+        fontSize: 30,
+        fontWeight: 'bold',
+        marginBottom: 15,
+    },
+    list: {
+        flex: 1,
+    },
+    footer: {
+        paddingHorizontal: 10,
+        paddingBottom: 10,
+        display: 'flex',
+        flexDirection: 'row',
+        alignItems: 'center',
+        borderTopColor: '#cbd5e1',
+        borderStyle: 'solid',
+        borderTopWidth: 1,
+    },
 });
 
 const App: FC = () => {
@@ -31,7 +49,7 @@ const App: FC = () => {
         const response = await fetch('https://raw.githubusercontent.com/Package/Star-Wars-Express/master/movies.json');
 
         if (!response.ok) {
-            return Alert.alert('Error', 'Movies could not have been loaded.');
+            return Alert.alert('Error', 'Movies could not have been loaded. Please try again later.');
         }
 
         const moviesList: {movies: ResponseMovie[]} = await response.json();
@@ -52,14 +70,13 @@ const App: FC = () => {
     return (
         <SafeAreaView style={styles.container}>
             <View style={{padding: 20, flex: 1}}>
-                <Text style={{fontSize: 30, fontWeight: 'bold', marginBottom: 15}}>Movie List</Text>
+                <Text style={styles.title}>Movie List</Text>
 
-                <MoviesList movies={movies} style={{flex: 1}} />
-
-                <View style={{padding: 10, display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
-                    <Text style={{fontSize: 20, marginRight: 5}}>Order:</Text>
-                    <Button title={moviesOrder === SortOrder.ASC ? 'Ascending' : 'Descending'} onPress={() => setMoviesOrder((order) => (order === SortOrder.ASC ? SortOrder.DESC : SortOrder.ASC))} />
-                </View>
+                <MoviesList movies={movies} style={styles.list} />
+            </View>
+            <View style={styles.footer}>
+                <Text style={{fontSize: 20, marginRight: 5}}>Order:</Text>
+                <Button title={moviesOrder === SortOrder.ASC ? 'Ascending' : 'Descending'} onPress={() => setMoviesOrder((order) => (order === SortOrder.ASC ? SortOrder.DESC : SortOrder.ASC))} />
             </View>
             <StatusBar />
         </SafeAreaView>
