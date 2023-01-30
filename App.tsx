@@ -20,7 +20,8 @@ const styles = StyleSheet.create({
         flex: 1,
     },
     footer: {
-        paddingHorizontal: 10,
+        paddingHorizontal: 20,
+        paddingTop: 5,
         paddingBottom: 10,
         display: 'flex',
         flexDirection: 'row',
@@ -69,7 +70,7 @@ const App: FC = () => {
 
     return (
         <SafeAreaView style={styles.container}>
-            <View style={{padding: 20, flex: 1}}>
+            <View style={{paddingHorizontal: 20, paddingTop: 20, flex: 1}}>
                 <Text style={styles.title}>Movie List</Text>
 
                 <MoviesList movies={movies} style={styles.list} />
