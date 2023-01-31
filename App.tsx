@@ -49,8 +49,10 @@ const App: FC = () => {
     };
 
     const handleResortMovies = () => {
-        setMoviesOrder((order) => (order === SortOrder.ASC ? SortOrder.DESC : SortOrder.ASC));
-        setMovies(sortMovies(movies, moviesOrder));
+        const newOrder = moviesOrder === SortOrder.ASC ? SortOrder.DESC : SortOrder.ASC;
+
+        setMoviesOrder(newOrder);
+        setMovies(sortMovies(movies, newOrder));
     };
 
     const fetchMovies = async () => {
