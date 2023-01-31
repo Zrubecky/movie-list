@@ -48,6 +48,11 @@ const App: FC = () => {
         });
     };
 
+    const handleResortMovies = () => {
+        setMoviesOrder((order) => (order === SortOrder.ASC ? SortOrder.DESC : SortOrder.ASC));
+        setMovies(sortMovies(movies, moviesOrder));
+    };
+
     const fetchMovies = async () => {
         const response = await fetch('https://raw.githubusercontent.com/Package/Star-Wars-Express/master/movies.json');
 
@@ -66,10 +71,6 @@ const App: FC = () => {
         fetchMovies();
     }, []);
 
-    useEffect(() => {
-        setMovies(sortMovies(movies, moviesOrder));
-    }, [moviesOrder]);
-
     return (
         <SafeAreaView style={styles.container}>
             <View style={{paddingHorizontal: 20, paddingTop: 20, flex: 1}}>
@@ -79,7 +80,7 @@ const App: FC = () => {
             </View>
             <View style={styles.footer}>
                 <Text style={{fontSize: 20, marginRight: 5}}>Order:</Text>
-                <Button title={moviesOrder === SortOrder.ASC ? 'Ascending' : 'Descending'} onPress={() => setMoviesOrder((order) => (order === SortOrder.ASC ? SortOrder.DESC : SortOrder.ASC))} />
+                <Button title={moviesOrder === SortOrder.ASC ? 'Ascending' : 'Descending'} onPress={handleResortMovies} />
             </View>
             <StatusBar />
         </SafeAreaView>
