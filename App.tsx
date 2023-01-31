@@ -37,12 +37,14 @@ const App: FC = () => {
     const [moviesOrder, setMoviesOrder] = useState<SortOrder>(SortOrder.ASC);
 
     const sortMovies = (moviesToSort: Movie[], order: SortOrder) => {
+        const orderBy = 'episode_number';
+
         return [...moviesToSort].sort((a, b) => {
             if (order === SortOrder.ASC) {
-                return a.episode_number - b.episode_number;
+                return a[orderBy] - b[orderBy];
             }
 
-            return b.episode_number - a.episode_number;
+            return b[orderBy] - a[orderBy];
         });
     };
 
